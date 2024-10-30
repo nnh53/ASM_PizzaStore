@@ -24,11 +24,15 @@ public class AccountDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String messageForward = "";
-        String url = "";
+        String url = "Login.jsp";
 
         try {
 
             String userName = request.getParameter("userName");
+            if (userName.equals("")) {
+                url = "Login.jsp";
+                throw new Exception();
+            }
             //1.DAO
             AccountDAO accountDAO = new AccountDAO();
             Account account = accountDAO.getAccountByUserName(userName);

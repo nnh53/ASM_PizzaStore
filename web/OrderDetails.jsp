@@ -18,6 +18,7 @@
     </head>
 
     <body>
+        <jsp:include page="Header.jsp" />
         <form method="post">
             <input type="submit" formaction="LogoutController" value="Logout" /><br />
         </form>

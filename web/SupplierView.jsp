@@ -17,6 +17,7 @@
     </head>
 
     <body>
+        <jsp:include page="Header.jsp" />
         <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
         <!--welcome-->
         <c:if test="${accountLoggedIn!=null}">

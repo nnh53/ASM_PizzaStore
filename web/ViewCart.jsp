@@ -11,6 +11,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="Header.jsp" />
         <h1>Your Cart</h1>
         <%
             long totalAmount = 0;

@@ -15,6 +15,7 @@
     </head>
 
     <body>
+        <jsp:include page="Header.jsp" />
         <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
         <c:set var="searchValue" value="${param.txtSearchValue}" />
 

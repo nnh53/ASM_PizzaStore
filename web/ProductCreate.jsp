@@ -11,6 +11,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="Header.jsp" />
         <h1>Create Product</h1>
         <c:set var="message" value="${requestScope.message}" />
         <c:if test="${message != null}">

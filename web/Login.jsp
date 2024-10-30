@@ -10,6 +10,7 @@
     </head>
 
     <body>
+        <jsp:include page="Header.jsp" />
         <h1>Login</h1>
         <c:set var="message" value="${requestScope.message}" />
         <c:if test="${message != null}">
