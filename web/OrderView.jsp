@@ -24,10 +24,10 @@
     <body>
         <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
         <!--welcome-->
-        <c:if test="${userLoggedIn!=null}">
-            <c:set var="lastName" value="${accountLoggedIn.lastName}" />
+        <c:if test="${accountLoggedIn!=null}">
+            <c:set var="lastName" value="${accountLoggedIn.fullName}" />
         </c:if>
-        <h3>Welcome <text style="color: red">${lastName}</text></h3>
+        <h3 style="color: red">Welcome ${lastName}</h3>
 
         <%  OrderDAO dao = new OrderDAO();
             ArrayList<Order> orderList = dao.getAll();

@@ -93,7 +93,7 @@ public class OrderDAO {
         //GIỮ LẠI THUỘC TÍNH GÌ CŨ THÌ LẤY LẠI TMP USER XÀI
         //2.update vô db
         int af = 0;
-        String sql = "UPDATE dbo.[Order] SET [OrderID]=?,[CustomerID]=?,[OrderDate]=?,[ShipAdress]=?,[Status]=? WHERE OrderID=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.[Order] SET [OrderID]=?,[CustomerID]=?,[OrderDate]=?,[ShipAdress]=?,[Status]=? WHERE OrderID=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, orderToUpdate.getOrderID(), orderToUpdate.getCustomerID(), orderToUpdate.getOrderDate(), orderToUpdate.getShipAddress(), orderToUpdate.getStatus(), orderToUpdate.getOrderID()); //truyền đúng tham số theo sql ko là đi
         cn.close();
         return (af > 0) ? orderToUpdate : null; // thành công trả chính nó, ko thì null
@@ -109,7 +109,7 @@ public class OrderDAO {
         String statusMessageDisable = DBMessage.DISSABLED.toString();
         //2.update vô db
         int af = 0;
-        String sql = "UPDATE dbo.[Order] SET [OrderID]=?,[CustomerID]=?,[OrderDate]=?,[ShipAdress]=?,[Status]=? WHERE OrderID=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.[Order] SET [OrderID]=?,[CustomerID]=?,[OrderDate]=?,[ShipAdress]=?,[Status]=? WHERE OrderID=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, tmpOrder.getOrderID(), tmpOrder.getCustomerID(), tmpOrder.getOrderDate(), tmpOrder.getShipAddress(), statusMessageDisable, tmpOrder.getOrderID()); //truyền đúng tham số theo sql ko là đi
         cn.close();
         return (af > 0) ? tmpOrder : null; // thành công trả chính nó, ko thì null

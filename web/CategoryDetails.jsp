@@ -42,7 +42,7 @@
                 <input type="submit" value="Update" name="action" />
             </form>
 
-            <a href="CategorySearch.jsp">Back</a><br />
+            <a href="CategoryView.jsp">Back</a><br />
 
         </c:if>
 

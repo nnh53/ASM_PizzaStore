@@ -129,7 +129,7 @@ public class AccountDAO {
 
         //2.update vô db
         int af = 0;
-        String sql = "UPDATE dbo.Account SET [AccountID]=?,[UserName]=?,[Password]=?,[FullName]=?,[Type]=?,[Status]=? WHERE AccountID=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.Account SET [AccountID]=?,[UserName]=?,[Password]=?,[FullName]=?,[Type]=?,[Status]=? WHERE AccountID=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, accountToUpdate.getAccountID(), accountToUpdate.getUserName(), accountToUpdate.getPassword(), accountToUpdate.getFullName(), accountToUpdate.getType(), accountToUpdate.getStatus(), accountToUpdate.getAccountID()); //truyền đúng tham số theo sql ko là đi
         cn.close();
         return (af > 0) ? accountToUpdate : null; // thành công trả chính nó, ko thì null
@@ -148,7 +148,7 @@ public class AccountDAO {
         //2.update vô db
         int af = 0;
         String statusMessageDisable = DBMessage.DISSABLED.toString();
-        String sql = "UPDATE dbo.Account SET [AccountID]=?,[UserName]=?,[Password]=?,[FullName]=?,[Type]=?,[Status]=? WHERE UserName=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.Account SET [AccountID]=?,[UserName]=?,[Password]=?,[FullName]=?,[Type]=?,[Status]=? WHERE UserName=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, tmpAccount.getAccountID(), tmpAccount.getUserName(), tmpAccount.getPassword(), tmpAccount.getFullName(), tmpAccount.getType(), statusMessageDisable, userNameToDelete); //truyền đúng tham số theo sql ko là đi
         cn.close();
         return (af > 0) ? tmpAccount : null; // thành công trả chính nó, ko thì null

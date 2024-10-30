@@ -129,7 +129,7 @@ public class ProductDAO {
         //GIỮ LẠI THUỘC TÍNH GÌ CŨ THÌ LẤY LẠI TMP USER XÀI
         //2.update vô db
         int af = 0;
-        String sql = "UPDATE dbo.Product SET [ProductID]=?,[ProductName]=?,[SupplierID]=?, [CategoryID]=?, [UnitPrice]=?,[ProductImageUrl]=?,[Status]=?  WHERE ProductID=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.Product SET [ProductID]=?,[ProductName]=?,[SupplierID]=?, [CategoryID]=?, [UnitPrice]=?,[ProductImageUrl]=?,[Status]=? WHERE ProductID=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, productToUpdate.getProductID(), productToUpdate.getProductName(), productToUpdate.getSupplierID(), productToUpdate.getCategoryID(), productToUpdate.getUnitPrice(),
                 productToUpdate.getProductImageUrl(),
                 productToUpdate.getStatus(),
@@ -149,7 +149,7 @@ public class ProductDAO {
         //2.update vô db
         int af = 0;
         String statusMessageDisable = DBMessage.DISSABLED.toString();
-        String sql = "UPDATE dbo.Product SET [ProductID]=?,[ProductName]=?,[SupplierID]=?, [CategoryID]=?, [UnitPrice]=?,[ProductImageUrl]=?,[Status]=?  WHERE ProductID=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.Product SET [ProductID]=?,[ProductName]=?,[SupplierID]=?, [CategoryID]=?, [UnitPrice]=?,[ProductImageUrl]=?,[Status]=?  WHERE ProductID=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, tmpProduct.getProductID(), tmpProduct.getProductName(), tmpProduct.getSupplierID(), tmpProduct.getCategoryID(), tmpProduct.getUnitPrice(),
                 tmpProduct.getProductImageUrl(),
                 statusMessageDisable,

@@ -25,7 +25,7 @@ public class CategoryUpdateController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String messageForward = "";
-        String url = "CategorySearch.jsp";
+        String url = "CategoryView.jsp";
 
         try {
             //0. validate

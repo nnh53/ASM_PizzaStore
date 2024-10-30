@@ -123,7 +123,7 @@ public class SupplierDAO {
         //GIỮ LẠI THUỘC TÍNH GÌ CŨ THÌ LẤY LẠI TMP USER XÀI
         //2.update vô db
         int af = 0;
-        String sql = "UPDATE dbo.Supplier SET [SupplierID]=?,[CompanyName]=?,[Address]=?,[Phone]=?,[Status]=? WHERE SupplierID=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.Supplier SET [SupplierID]=?,[CompanyName]=?,[Address]=?,[Phone]=?,[Status]=? WHERE SupplierID=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, supplierToUpdate.getSupplierID(), supplierToUpdate.getCompanyName(), supplierToUpdate.getAddress(), supplierToUpdate.getPhone(), supplierToUpdate.getStatus(), supplierToUpdate.getSupplierID()); //truyền đúng tham số theo sql ko là đi
         cn.close();
         return (af > 0) ? supplierToUpdate : null; // thành công trả chính nó, ko thì null
@@ -139,7 +139,7 @@ public class SupplierDAO {
         //2.update vô db
         int af = 0;
         String statusMessageDisable = DBMessage.DISSABLED.toString();
-        String sql = "UPDATE dbo.Supplier SET [SupplierID]=?,[CompanyName]=?,[Address]=?,[Phone]=?,[Status]=? WHERE CompanyName=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.Supplier SET [SupplierID]=?,[CompanyName]=?,[Address]=?,[Phone]=?,[Status]=? WHERE CompanyName=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, tmpSupplier.getSupplierID(), tmpSupplier.getCompanyName(), tmpSupplier.getAddress(), tmpSupplier.getPhone(), statusMessageDisable, nameCompany); //truyền đúng tham số theo sql ko là đi
         cn.close();
         return (af > 0) ? tmpSupplier : null; // thành công trả chính nó, ko thì null

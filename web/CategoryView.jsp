@@ -19,8 +19,8 @@
         <c:set var="searchValue" value="${param.txtSearchValue}" />
 
         <!--welcome-->
-        <c:if test="${userLoggedIn!=null}">
-            <c:set var="lastName" value="${accountLoggedIn.lastName}" />
+        <c:if test="${accountLoggedIn!=null}">
+            <c:set var="lastName" value="${accountLoggedIn.fullName}" />
         </c:if>
         <h3>Welcome <text style="color: red">${lastName}</text></h3>
 

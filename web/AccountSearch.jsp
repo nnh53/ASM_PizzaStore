@@ -15,8 +15,8 @@
         <c:set var="searchValue" value="${param.txtSearchValue}" />
 
         <!--welcome-->
-        <c:if test="${userLoggedIn!=null}">
-            <c:set var="lastName" value="${accountLoggedIn.lastName}" />
+        <c:if test="${accountLoggedIn!=null}">
+            <c:set var="lastName" value="${accountLoggedIn.fullName}" />
         </c:if>
         <h3>Welcome <text style="color: red">${lastName}</text></h3>
 
@@ -27,8 +27,7 @@
         <!--search-->
         <h1>Search user by last name</h1>
         <form action="AccountSearchController" method="post">
-            Enter search value <input type="text" name="txtSearchValue"
-                                      value="${searchValue==null?searchValue:''}" /><br />
+            Enter search value <input type="text" name="txtSearchValue" value="${searchValue==null?searchValue:''}" /><br />
             <input type="submit" value="Search" name="action" />
         </form>
 

@@ -24,7 +24,7 @@
             <h1>Account Details</h1>
             <c:set var="message" value="${requestScope.message}" />
             <c:if test="${message != null}">
-                <text style="color: red">${message}</text>
+                <p style="color: red">${message}</p>
             </c:if>
 
             <form action="AccountUpdateController" method="post">
@@ -33,24 +33,25 @@
                 UserName
                 <input type="text" name="txtUserName" value="${accountDetails.userName}" />
                 <c:if test="${not empty error.userNameError}">
-                    <text style="color: red">${error.userNameError}</text>
+                    <p style="color: red">${error.userNameError}</p>
                 </c:if><br />
 
                 Password
                 <input type="password" placeholder="Enter password" name="txtPassword" />
                 <c:if test="${not empty error.passwordError}">
-                    <text style="color: red">${error.passwordError}</text>
+                    <p style="color: red">${error.passwordError}</p>
                 </c:if><br />
 
                 FullName
                 <input type="text" placeholder="Enter full name" name="txtFullName" value="${accountDetails.fullName}" />
                 <c:if test="${not empty error.fullNameError}">
-                    <text style="color: red">${error.fullNameError}</text>
+                    <p style="color: red">${error.fullNameError}</p>
                 </c:if><br />
 
                 <c:set value="${accountDetails.type == 'Staff'}" var="isTypeStaff" />
                 <c:set value="${accountLoggedIn.type != 'Staff'}" var="currentAccountIsNotStaff" />
-                <input type="checkbox" name="chkIsStaff" checked="${isTypeStaff}"  disabled ="${currentAccountIsNotStaff} " />isStaff<br />
+                <input type="checkbox" name="chkIsStaff" checked="${isTypeStaff}" disabled="${currentAccountIsNotStaff}"/>isStaff<br />
+
                 <input type="submit" value="Update" name="action" />
             </form>
 

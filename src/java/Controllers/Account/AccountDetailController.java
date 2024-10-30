@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "AccountDetailController", urlPatterns = {"/AccountDetailController"})
 public class AccountDetailController extends HttpServlet {
@@ -26,6 +27,7 @@ public class AccountDetailController extends HttpServlet {
         String url = "";
 
         try {
+
             String userName = request.getParameter("userName");
             //1.DAO
             AccountDAO accountDAO = new AccountDAO();

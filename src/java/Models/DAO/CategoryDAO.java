@@ -102,9 +102,9 @@ public class CategoryDAO {
         Connection cn = DBConnection.getConnection();
         int af = 0;
         String sql = "INSERT dbo.Category(CategoryID, CategoryName, Description, Status)" + "VALUES (\n"
-                + "? ," //-- CategoryID - nvarchar(30)\n"
-                + "? ," //-- CategoryName - nvarchar(30)\n"
-                + "? ," //-- Description - nvarchar(50)\n"
+                + "?," //-- CategoryID - nvarchar(30)\n"
+                + "?," //-- CategoryName - nvarchar(30)\n"
+                + "?," //-- Description - nvarchar(50)\n"
                 + "?" //-- Status - nvarchar(50)\n"
                 + ");";
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, categoryToAdd.getCategoryID(), categoryToAdd.getCategoryName(), categoryToAdd.getDescription(), categoryToAdd.getStatus()); //truyền đúng tham số theo sql ko là đi
@@ -121,7 +121,7 @@ public class CategoryDAO {
         //GIỮ LẠI THUỘC TÍNH GÌ CŨ THÌ LẤY LẠI TMP USER XÀI
         //2.update vô db
         int af = 0;
-        String sql = "UPDATE dbo.Category SET [CategoryID]=?,[CategoryName]=?,[Description]=?,[Status]=? WHERE CategoryID=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.Category SET [CategoryID]=?,[CategoryName]=?,[Description]=?,[Status]=? WHERE CategoryID=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, categoryToUpdate.getCategoryID(), categoryToUpdate.getCategoryName(), categoryToUpdate.getDescription(), categoryToUpdate.getStatus(), categoryToUpdate.getCategoryID()); //truyền đúng tham số theo sql ko là đi
         cn.close();
         return (af > 0) ? categoryToUpdate : null; // thành công trả chính nó, ko thì null
@@ -137,7 +137,7 @@ public class CategoryDAO {
         //2.update vô db
         int af = 0;
         String statusMessageDisable = DBMessage.DISSABLED.toString();
-        String sql = "UPDATE dbo.Category SET [CategoryID]=?,[CategoryName]=?,[Description]=?,[Status]=? WHERE CategoryName=?"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
+        String sql = "UPDATE dbo.Category SET [CategoryID]=?,[CategoryName]=?,[Description]=?,[Status]=? WHERE CategoryName=? AND [Status] != 'disabled'"; //CHÚ Ý CÁI WHERE LÀ CÁI CUỐI
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, tmpCategory.getCategoryID(), tmpCategory.getCategoryName(), tmpCategory.getDescription(), statusMessageDisable, cateNameToDelete); //truyền đúng tham số theo sql ko là đi
         cn.close();
         return (af > 0) ? tmpCategory : null; // thành công trả chính nó, ko thì null

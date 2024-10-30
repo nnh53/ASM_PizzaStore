@@ -21,24 +21,24 @@
             <h1>Category Details</h1>
             <c:set var="message" value="${requestScope.message}" />
             <c:if test="${message != null}">
-                <text style="color: red">${message}</text>
+                <p style="color: red">${message}</p>
             </c:if>
             <form action="SupplierUpdateController" method="post">
                 <c:set var="error" value="${requestScope.errorDetail}" />
 
                 companyName <input type="text" name="txtCompanyName" value="${supplierDetails.companyName}" />
                 <c:if test="${not empty error.companyNameError}">
-                    <text style="color: red">${error.companyNameError}</text>
+                    <p style="color: red">${error.companyNameError}</p>
                 </c:if><br />
 
                 address <input type="text" name="txtAddress" value="${supplierDetails.address}" />
                 <c:if test="${not empty error.addressError}">
-                    <text style="color: red">${error.addressError}</text>
+                    <p style="color: red">${error.addressError}</p>
                 </c:if><br />
 
                 phone <input type="text" name="txtPhone" value="${supplierDetails.phone}"/>
                 <c:if test="${not empty error.phoneError}">
-                    <text style="color: red">${error.phoneError}</text>
+                    <p style="color: red">${error.phoneError}</p>
                 </c:if><br />
 
                 <input type="submit" value="Update" name="action" />

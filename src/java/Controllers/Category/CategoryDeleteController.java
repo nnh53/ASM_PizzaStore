@@ -21,7 +21,7 @@ public class CategoryDeleteController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String url = "CategorySearch.jsp";
+        String url = "CategoryView.jsp";
         String messageForward = "";
         try {
             String categoryName = request.getParameter("txtCategoryName");
@@ -33,7 +33,7 @@ public class CategoryDeleteController extends HttpServlet {
             }
         } catch (Exception ex) { //catch ALL exception
             //3. fail
-            url = "CategorySearch.jsp";
+            url = "CategoryView.jsp";
             messageForward = ex.getMessage().toString(); //set message là cái message đã bắt đc
             log(ex.getMessage());
             ex = null; //tránh crash
