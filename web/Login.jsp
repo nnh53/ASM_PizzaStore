@@ -11,18 +11,20 @@
 
     <body>
         <jsp:include page="Header.jsp" />
-        <h1>Login</h1>
-        <c:set var="message" value="${requestScope.message}" />
-        <c:if test="${message != null}">
-            <text style="color: red">${message}</text>
-        </c:if>
+        <div class="container">
+            <h1>Login</h1>
+            <c:set var="message" value="${requestScope.message}" />
+            <c:if test="${message != null}">
+                <text style="color: red">${message}</text>
+            </c:if>
 
-        <form action="LoginController" method="post">
-            AccountName <input type="text" name="txtAccountName" /><br />
-            Password <input type="password" name="txtPassword" /><br />
-            <input type="submit" value="Login" name="action" />
-            <input type="reset" value="Reset" /><br />
-            <a href="AccountCreate.jsp">Click here to Sign up</a><br />
-        </form>
+            <form action="LoginController" method="post">
+                AccountName <input type="text" name="txtAccountName" /><br />
+                Password <input type="password" name="txtPassword" /><br />
+                <input type="submit" value="Login" name="action" />
+                <input type="reset" value="Reset" /><br />
+                <a href="AccountCreate.jsp">Click here to Sign up</a><br />
+            </form>
+        </div>
     </body>
 </html>

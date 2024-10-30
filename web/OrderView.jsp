@@ -23,61 +23,63 @@
 
     <body>
         <jsp:include page="Header.jsp" />
-        <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
-        <!--welcome-->
-        <c:if test="${accountLoggedIn!=null}">
-            <c:set var="lastName" value="${accountLoggedIn.fullName}" />
-        </c:if>
-        <h3 style="color: red">Welcome ${lastName}</h3>
+       <div class="container">
+           <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
+           <!--welcome-->
+           <c:if test="${accountLoggedIn!=null}">
+               <c:set var="lastName" value="${accountLoggedIn.fullName}" />
+           </c:if>
+           <h3 style="color: red">Welcome ${lastName}</h3>
 
-        <%  OrderDAO dao = new OrderDAO();
-            ArrayList<Order> orderList = dao.getAll();
-            request.setAttribute("orderList", orderList);
-        %>
+           <%  OrderDAO dao = new OrderDAO();
+               ArrayList<Order> orderList = dao.getAll();
+               request.setAttribute("orderList", orderList);
+           %>
 
-        <c:set var="list" value="${orderList}" />
-        <c:set var="count" value="1" />
-        <c:if test="${list!= null}">
-            <table border="1" class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>orderID</th>
-                        <th>customerID</th>
-                        <th>orderDate</th>
-                        <th>shipAddress</th>
-                        <th>status</th>
-                        <th colspan="2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="item" items="${orderList}">
-                        <tr>
-                            <td>${count}</td>
-                            <td>${item.orderID}</td>
-                            <td>${item.customerID}</td>
-                            <td>${item.orderDate}</td>
-                            <td>${item.shipAddress}</td>
-                            <td>${item.status}</td>
-                            <td>
-                                <a href="OrderDeleteController?action=Delete&txtOrderID=${item.orderID}">Delete</a>
-                            </td>
-                            <td>
-                                <a href="OrderDetailController?action=Details&txtOrderID=${item.orderID}">View</a>
-                            </td>
-                        </tr>
-                        <c:set var="count" value="${count+1}" />
-                    </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
+           <c:set var="list" value="${orderList}" />
+           <c:set var="count" value="1" />
+           <c:if test="${list!= null}">
+               <table border="1" class="table table-hover">
+                   <thead>
+                   <tr>
+                       <th>No.</th>
+                       <th>orderID</th>
+                       <th>customerID</th>
+                       <th>orderDate</th>
+                       <th>shipAddress</th>
+                       <th>status</th>
+                       <th colspan="2">Action</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   <c:forEach var="item" items="${orderList}">
+                       <tr>
+                           <td>${count}</td>
+                           <td>${item.orderID}</td>
+                           <td>${item.customerID}</td>
+                           <td>${item.orderDate}</td>
+                           <td>${item.shipAddress}</td>
+                           <td>${item.status}</td>
+                           <td>
+                               <a href="OrderDeleteController?action=Delete&txtOrderID=${item.orderID}">Delete</a>
+                           </td>
+                           <td>
+                               <a href="OrderDetailController?action=Details&txtOrderID=${item.orderID}">View</a>
+                           </td>
+                       </tr>
+                       <c:set var="count" value="${count+1}" />
+                   </c:forEach>
+                   </tbody>
+               </table>
+           </c:if>
 
-        <c:set var="message" value="${message}"/>
-        <c:if test="${message != null}">
-            <p style="color: green">${message}</p>
-        </c:if>
+           <c:set var="message" value="${message}"/>
+           <c:if test="${message != null}">
+               <p style="color: green">${message}</p>
+           </c:if>
 
-        <h3>Number of Category: ${(orderList != null)?orderList.size():0}</h3>
+           <h3>Number of Category: ${(orderList != null)?orderList.size():0}</h3>
+       </div>
     </body>
 
 </html>

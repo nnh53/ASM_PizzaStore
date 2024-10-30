@@ -12,29 +12,31 @@
     </head>
     <body>
         <jsp:include page="Header.jsp" />
-        <h1>Create Category</h1>
-        <c:set var="message" value="${requestScope.message}" />
-        <c:if test="${message != null}">
-            ${message}
-        </c:if>
+       <div class="container">
+           <h1>Create Category</h1>
+           <c:set var="message" value="${requestScope.message}" />
+           <c:if test="${message != null}">
+               ${message}
+           </c:if>
 
-        <form action="CategoryCreateController" method="post">
-            <c:set var="error" value="${requestScope.errorDetail}" />
+           <form action="CategoryCreateController" method="post">
+               <c:set var="error" value="${requestScope.errorDetail}" />
 
-            CategoryName <input type="text" name="txtCategoryName" value="" />
-            <c:if test="${not empty error.userNameError}">
-                <text style="color: red">${error.userNameError}</text>
-            </c:if><br />
+               CategoryName <input type="text" name="txtCategoryName" value="" />
+               <c:if test="${not empty error.userNameError}">
+                   <text style="color: red">${error.userNameError}</text>
+               </c:if><br />
 
-            description <input type="text" name="txtDescription" />
-            <c:if test="${not empty error.passwordError}">
-                <text style="color: red">${error.passwordError}</text>
-            </c:if><br />
+               description <input type="text" name="txtDescription" />
+               <c:if test="${not empty error.passwordError}">
+                   <text style="color: red">${error.passwordError}</text>
+               </c:if><br />
 
-            <input type="submit" value="Create" name="action" /><br />
+               <input type="submit" value="Create" name="action" /><br />
 
-            <a href="Home.jsp">Back</a><br />
-        </form>
+               <a href="Home.jsp">Back</a><br />
+           </form>
+       </div>
     </body>
 
 </html>

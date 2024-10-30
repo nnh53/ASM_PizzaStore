@@ -19,58 +19,59 @@
 
     <body>
         <jsp:include page="Header.jsp" />
-        <form method="post">
-            <input type="submit" formaction="LogoutController" value="Logout" /><br />
-        </form>
+        <div class="container">
+            <form method="post">
+                <input type="submit" formaction="LogoutController" value="Logout" /><br />
+            </form>
 
-        <!--ton tai account-->
-        <c:if test="${orderDetails != null}">
-            <h1>Category Details</h1>
-            <c:set var="message" value="${requestScope.message}" />
-            <c:if test="${message != null}">
-                <text style="color: red">${message}</text>
-            </c:if>
+            <!--ton tai account-->
+            <c:if test="${orderDetails != null}">
+                <h1>Category Details</h1>
+                <c:set var="message" value="${requestScope.message}" />
+                <c:if test="${message != null}">
+                    <text style="color: red">${message}</text>
+                </c:if>
 
-            <form action="OrderUpdateController" method="post">
-                <c:set var="error" value="${requestScope.errorDetail}" />
+                <form action="OrderUpdateController" method="post">
+                    <c:set var="error" value="${requestScope.errorDetail}" />
 
-                orderID <input type="text" readonly name="orderID" value="${orderDetails.orderID}" />
+                    orderID <input type="text" readonly name="orderID" value="${orderDetails.orderID}" />
 
-                customerID <input type="text" name="customerID" value="${orderDetails.customerID}" />
-                <c:if test="${not empty error.productNameError}">
-                    <text style="color: red">${error.productNameError}</text>
-                </c:if><br />
+                    customerID <input type="text" name="customerID" value="${orderDetails.customerID}" />
+                    <c:if test="${not empty error.productNameError}">
+                        <text style="color: red">${error.productNameError}</text>
+                    </c:if><br />
 
-                <div class="row form-group">
-                    <div class="col-sm-4">
-                        <div class="input-group date" id="datepicker">
-                            orderDate<input  name="orderDate" type="text" class="form-control" value="${orderDetails.orderDate}" readonly >
-                            <span class="input-group-append">
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <div class="input-group date" id="datepicker">
+                                orderDate<input  name="orderDate" type="text" class="form-control" value="${orderDetails.orderDate}" readonly >
+                                <span class="input-group-append">
                                 <span class="input-group-text bg-white d-block">
                                     <i class="fa fa-calendar"></i>
                                 </span>
                             </span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                shipAddress <input type="text" name="shipAddress" value="${orderDetails.shipAddress}" />
-                <c:if test="${not empty error.categoryIDError}">
-                    <text style="color: red">${error.categoryIDError}</text>
-                </c:if><br />
+                    shipAddress <input type="text" name="shipAddress" value="${orderDetails.shipAddress}" />
+                    <c:if test="${not empty error.categoryIDError}">
+                        <text style="color: red">${error.categoryIDError}</text>
+                    </c:if><br />
 
-                status <input type="text" name="status" readonly value="${orderDetails.status}" />
-                <c:if test="${not empty error.categoryIDError}">
-                    <text style="color: red">${error.categoryIDError}</text>
-                </c:if><br />
+                    status <input type="text" name="status" readonly value="${orderDetails.status}" />
+                    <c:if test="${not empty error.categoryIDError}">
+                        <text style="color: red">${error.categoryIDError}</text>
+                    </c:if><br />
 
-                <input type="submit" value="Update" name="action" />
-            </form>
+                    <input type="submit" value="Update" name="action" />
+                </form>
 
-            <a href="OrderView.jsp">Back</a><br />
+                <a href="OrderView.jsp">Back</a><br />
 
-        </c:if>
-
+            </c:if>
+        </div>
     </body>
 
 </html>

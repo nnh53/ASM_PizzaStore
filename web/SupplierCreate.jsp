@@ -12,34 +12,37 @@
     </head>
     <body>
         <jsp:include page="Header.jsp" />
-        <h1>Create Supplier</h1>
-        <c:set var="message" value="${requestScope.message}" />
-        <c:if test="${message != null}">
-            ${message}
-        </c:if>
+        <div class="container">
 
-        <form action="SupplierCreateController" method="post">
-            <c:set var="error" value="${requestScope.errorDetail}" />
+            <h1>Create Supplier</h1>
+            <c:set var="message" value="${requestScope.message}" />
+            <c:if test="${message != null}">
+                ${message}
+            </c:if>
 
-            companyName <input type="text" name="txtCompanyName" value="" />
-            <c:if test="${not empty error.companyNameError}">
-                <text style="color: red">${error.companyNameError}</text>
-            </c:if><br />
+            <form action="SupplierCreateController" method="post">
+                <c:set var="error" value="${requestScope.errorDetail}" />
 
-            address <input type="text" name="txtAddress" />
-            <c:if test="${not empty error.addressError}">
-                <text style="color: red">${error.addressError}</text>
-            </c:if><br />
+                companyName <input type="text" name="txtCompanyName" value="" />
+                <c:if test="${not empty error.companyNameError}">
+                    <text style="color: red">${error.companyNameError}</text>
+                </c:if><br />
 
-            phone <input type="text" name="txtPhone" />
-            <c:if test="${not empty error.phoneError}">
-                <text style="color: red">${error.phoneError}</text>
-            </c:if><br />
+                address <input type="text" name="txtAddress" />
+                <c:if test="${not empty error.addressError}">
+                    <text style="color: red">${error.addressError}</text>
+                </c:if><br />
 
-            <input type="submit" value="Create" name="action" /><br />
+                phone <input type="text" name="txtPhone" />
+                <c:if test="${not empty error.phoneError}">
+                    <text style="color: red">${error.phoneError}</text>
+                </c:if><br />
 
-            <a href="Home.jsp">Back</a><br />
-        </form>
+                <input type="submit" value="Create" name="action" /><br />
+
+                <a href="Home.jsp">Back</a><br />
+            </form>
+        </div>
     </body>
 
 </html>

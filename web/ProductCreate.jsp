@@ -16,58 +16,60 @@
     </head>
     <body>
         <jsp:include page="Header.jsp" />
+        <div class="container">
 
-        <%
-            SupplierDAO dao = new SupplierDAO();
-            ArrayList<Supplier> supplierList = dao.getAll();
-            request.setAttribute("supplierList", supplierList);
-            CategoryDAO cateDao = new CategoryDAO();
-            ArrayList<Category> categoryList = cateDao.getAll();
-            request.setAttribute("categoryList", categoryList);
-        %>
-        <h1>Create Product</h1>
+            <%
+                SupplierDAO dao = new SupplierDAO();
+                ArrayList<Supplier> supplierList = dao.getAll();
+                request.setAttribute("supplierList", supplierList);
+                CategoryDAO cateDao = new CategoryDAO();
+                ArrayList<Category> categoryList = cateDao.getAll();
+                request.setAttribute("categoryList", categoryList);
+            %>
+            <h1>Create Product</h1>
 
-        <c:set var="message" value="${requestScope.message}" />
-        <c:if test="${message != null}">
-            ${message}
-        </c:if>
+            <c:set var="message" value="${requestScope.message}" />
+            <c:if test="${message != null}">
+                ${message}
+            </c:if>
 
-        <form action="ProductCreateController" method="post">
-            <c:set var="error" value="${requestScope.errorDetail}" />
+            <form action="ProductCreateController" method="post">
+                <c:set var="error" value="${requestScope.errorDetail}" />
 
-            productName <input type="text" name="txtProductName" value="" />
-            <c:if test="${not empty error.productNameError}">
-                <text style="color: red">${error.productNameError}</text>
-            </c:if><br />
+                productName <input type="text" name="txtProductName" value="" />
+                <c:if test="${not empty error.productNameError}">
+                    <text style="color: red">${error.productNameError}</text>
+                </c:if><br />
 
-            supplierID
-            <select class="form-select" name="txtSupplierID" >
-                <c:forEach var="supp" items="${supplierList}">
-                    <option>${supp.supplierID}</option>
-                </c:forEach>
-            </select>
+                supplierID
+                <select class="form-select" name="txtSupplierID" >
+                    <c:forEach var="supp" items="${supplierList}">
+                        <option>${supp.supplierID}</option>
+                    </c:forEach>
+                </select>
 
-            categoryID
-            <select class="form-select" name="txtCategoryID" >
-                <c:forEach var="cate" items="${categoryList}">
-                    <option>${cate.categoryID}</option>
-                </c:forEach>
-            </select>
+                categoryID
+                <select class="form-select" name="txtCategoryID" >
+                    <c:forEach var="cate" items="${categoryList}">
+                        <option>${cate.categoryID}</option>
+                    </c:forEach>
+                </select>
 
-            unitPrice <input type="text" name="txtUnitPrice" />
-            <c:if test="${not empty error.unitPriceError}">
-                <text style="color: red">${error.unitPriceError}</text>
-            </c:if><br />
+                unitPrice <input type="text" name="txtUnitPrice" />
+                <c:if test="${not empty error.unitPriceError}">
+                    <text style="color: red">${error.unitPriceError}</text>
+                </c:if><br />
 
-            productImageUrl <input type="text" name="txtProductImageUrl" />
-            <c:if test="${not empty error.productImageUrlError}">
-                <text style="color: red">${error.productImageUrlError}</text>
-            </c:if><br />
+                productImageUrl <input type="text" name="txtProductImageUrl" />
+                <c:if test="${not empty error.productImageUrlError}">
+                    <text style="color: red">${error.productImageUrlError}</text>
+                </c:if><br />
 
-            <input type="submit" value="Create" name="action" /><br />
+                <input type="submit" value="Create" name="action" /><br />
 
-            <a href="Home.jsp">Back</a><br />
-        </form>
+                <a href="Home.jsp">Back</a><br />
+            </form>
+        </div>
     </body>
 
 </html>

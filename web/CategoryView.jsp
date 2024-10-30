@@ -16,34 +16,29 @@
 
     <body>
         <jsp:include page="Header.jsp" />
-        <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
-        <c:set var="searchValue" value="${param.txtSearchValue}" />
+        <div class="container">
+            <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
+            <c:set var="searchValue" value="${param.txtSearchValue}" />
+            
+            <%
+                CategoryDAO categoryDAO = new CategoryDAO();
+                ArrayList<Category> cateList = categoryDAO.getAll();
+                request.setAttribute("cateList", cateList);
+            %>
 
-        <!--welcome-->
-        <c:if test="${accountLoggedIn!=null}">
-            <c:set var="lastName" value="${accountLoggedIn.fullName}" />
-        </c:if>
-        <h3>Welcome <text style="color: red">${lastName}</text></h3>
-
-        <%
-            CategoryDAO categoryDAO = new CategoryDAO();
-            ArrayList<Category> cateList = categoryDAO.getAll();
-            request.setAttribute("cateList", cateList);
-        %>
-
-        <c:set var="userList" value="${cateList}" />
-        <c:set var="count" value="1" />
-        <c:if test="${userList != null}">
-            <table border="1" class="table table-hover">
-                <thead>
+            <c:set var="userList" value="${cateList}" />
+            <c:set var="count" value="1" />
+            <c:if test="${userList != null}">
+                <table border="1" class="table table-hover">
+                    <thead>
                     <tr>
                         <th>No.</th>
                         <th>categoryName</th>
                         <th>description</th>
                         <th colspan="2">Action</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <c:forEach var="cate" items="${cateList}">
                         <tr>
                             <td>${count}</td>
@@ -58,15 +53,16 @@
                         </tr>
                         <c:set var="count" value="${count+1}" />
                     </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
+                    </tbody>
+                </table>
+            </c:if>
 
-        <c:if test="${message != null}">
-            <p style="color: green">${message}</p>
-        </c:if>
+            <c:if test="${message != null}">
+                <p style="color: green">${message}</p>
+            </c:if>
 
-        <h3>Number of Category: ${(cateList != null)?cateList.size():0}</h3>
+            <h3>Number of Category: ${(cateList != null)?cateList.size():0}</h3>
+        </div>
     </body>
 
 </html>

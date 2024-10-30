@@ -18,43 +18,45 @@
     </head>
     <body>
         <jsp:include page="Header.jsp" />
-        <h1>Create Product</h1>
-        <c:set var="message" value="${requestScope.message}" />
-        <c:if test="${message != null}">
-            ${message}
-        </c:if>
+        <div class="container">
+            <h1>Create Product</h1>
+            <c:set var="message" value="${requestScope.message}" />
+            <c:if test="${message != null}">
+                ${message}
+            </c:if>
 
-        <form action="OrderCreateController" method="post">
-            <input type="hidden" value="${cart}" name="cart"/>
-            <c:set var="error" value="${requestScope.errorDetail}" />
+            <form action="OrderCreateController" method="post">
+                <input type="hidden" value="${cart}" name="cart"/>
+                <c:set var="error" value="${requestScope.errorDetail}" />
 
-            customerID <input type="text" name="customerID" value="" />
-            <c:if test="${not empty error.productNameError}">
-                <text style="color: red">${error.productNameError}</text>
-            </c:if><br />
+                customerID <input type="text" name="customerID" value="" />
+                <c:if test="${not empty error.productNameError}">
+                    <text style="color: red">${error.productNameError}</text>
+                </c:if><br />
 
-            <div class="row form-group">
-                <div class="col-sm-4">
-                    <div class="input-group date" id="datepicker">
-                        orderDate<input  name="orderDate" type="text" class="form-control" readonly>
-                        <span class="input-group-append">
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <div class="input-group date" id="datepicker">
+                            orderDate<input  name="orderDate" type="text" class="form-control" readonly>
+                            <span class="input-group-append">
                             <span class="input-group-text bg-white d-block">
                                 <i class="fa fa-calendar"></i>
                             </span>
                         </span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            shipAddress <input type="text" name="shipAddress" />
-            <c:if test="${not empty error.categoryIDError}">
-                <text style="color: red">${error.categoryIDError}</text>
-            </c:if><br />
+                shipAddress <input type="text" name="shipAddress" />
+                <c:if test="${not empty error.categoryIDError}">
+                    <text style="color: red">${error.categoryIDError}</text>
+                </c:if><br />
 
-            <input type="submit" value="Create" name="action" /><br />
+                <input type="submit" value="Create" name="action" /><br />
 
-            <a href="Home.jsp">Back</a><br />
-        </form>
+                <a href="Home.jsp">Back</a><br />
+            </form>
+        </div>
     </body>
 </html>
 <script type="text/javascript">
