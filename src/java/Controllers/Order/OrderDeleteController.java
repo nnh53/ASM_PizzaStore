@@ -5,27 +5,14 @@
  */
 package Controllers.Order;
 
-import Controllers.Product.*;
-import Controllers.Supplier.*;
-import Controllers.Category.*;
-import Controllers.Account.*;
-import Models.DAO.AccountDAO;
-import Models.DAO.CategoryDAO;
 import Models.DAO.OrderDAO;
-import Models.DAO.ProductDAO;
-import Models.DAO.SupplierDAO;
-import Models.DAO.UserDAO;
-import Models.DTO.Account;
-import Models.DTO.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "OrderDeleteController", urlPatterns = {"/OrderDeleteController"})
 public class OrderDeleteController extends HttpServlet {
@@ -34,7 +21,7 @@ public class OrderDeleteController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String url = "OrderSearch.jsp";
+        String url = "OrderView.jsp";
         String messageForward = "";
         try {
             String orderID = request.getParameter("txtOrderID");

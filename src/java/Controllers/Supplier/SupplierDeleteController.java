@@ -5,23 +5,14 @@
  */
 package Controllers.Supplier;
 
-import Controllers.Category.*;
-import Controllers.Account.*;
-import Models.DAO.AccountDAO;
-import Models.DAO.CategoryDAO;
 import Models.DAO.SupplierDAO;
-import Models.DAO.UserDAO;
-import Models.DTO.Account;
-import Models.DTO.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "SupplierDeleteController", urlPatterns = {"/SupplierDeleteController"})
 public class SupplierDeleteController extends HttpServlet {
@@ -30,7 +21,7 @@ public class SupplierDeleteController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String url = "SupplierSearch.jsp";
+        String url = "SupplierView.jsp";
         String messageForward = "";
         try {
             String txtCompanyName = request.getParameter("txtCompanyName");

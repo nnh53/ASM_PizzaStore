@@ -5,23 +5,9 @@
  */
 package Controllers.Supplier;
 
-import Controllers.Category.*;
-import Controllers.Account.*;
-import Constant.DBMessage;
-import Constant.ErrorMessage;
-import Models.DAO.AccountDAO;
-import Models.DAO.CategoryDAO;
 import Models.DAO.SupplierDAO;
-import Models.DAO.UserDAO;
-import Models.DTO.Account;
-import Models.DTO.AccountError;
-import Models.DTO.Category;
-import Models.DTO.CategoryError;
 import Models.DTO.Supplier;
-import Models.DTO.User;
-import Models.DTO.UserError;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +23,7 @@ public class SupplierUpdateController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String messageForward = "";
-        String url = "SupplierSearch.jsp";
+        String url = "SupplierView.jsp";
 
         try {
             String companyName = request.getParameter("txtCompanyName");

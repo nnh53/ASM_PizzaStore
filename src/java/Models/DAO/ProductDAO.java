@@ -7,9 +7,7 @@ package Models.DAO;
 
 import Constant.DBMessage;
 import Constant.ErrorMessage;
-import Models.DTO.Category;
 import Models.DTO.Product;
-import Models.DTO.Supplier;
 import Ultil.DaoUltil;
 import java.sql.Connection;
 import java.sql.ResultSet;

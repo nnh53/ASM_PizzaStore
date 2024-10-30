@@ -66,7 +66,7 @@
                 <input type="submit" value="Update" name="action" />
             </form>
 
-            <a href="OrderSearch.jsp">Back</a><br />
+            <a href="OrderView.jsp">Back</a><br />
 
         </c:if>
 

@@ -1,10 +1,7 @@
 package Controllers.Authentication;
 
-import Constant.ErrorMessage;
 import Models.DAO.AccountDAO;
-import Models.DAO.UserDAO;
 import Models.DTO.Account;
-import Models.DTO.User;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,13 +30,12 @@ public class LoginController extends HttpServlet {
             //2.success
             HttpSession session = request.getSession();
             session.setAttribute("accountLoggedIn", account);
-            if (account.getType().matches("Staff")) {
-                //url = "AccountSearch.jsp";
-                url = "ProductSearch.jsp";
-                //url = "CategoryCreate.jsp";
-            } else {
-                url = "AccountDetailController" + "?action=Details&&userName=" + userName;
-            }
+//            if (account.getType().matches("Staff")) {
+//                url = "Home.jsp";
+//            } else {
+//                url = "AccountDetailController" + "?action=Details&&userName=" + userName;
+//            }
+            url = "Home.jsp";
         } catch (Exception ex) { //catch ALL exception
             //3.fail
             messageForward = ex.getMessage().toString(); //dao quăng ex có message

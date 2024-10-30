@@ -5,15 +5,9 @@
  */
 package Controllers.Category;
 
-import Controllers.Account.*;
-import Models.DAO.AccountDAO;
 import Models.DAO.CategoryDAO;
-import Models.DAO.UserDAO;
-import Models.DTO.Account;
 import Models.DTO.Category;
-import Models.DTO.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

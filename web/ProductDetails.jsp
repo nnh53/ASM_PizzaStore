@@ -54,7 +54,7 @@
                 <input type="submit" value="Update" name="action" />
             </form>
 
-            <a href="SupplierSearch.jsp">Back</a><br />
+            <a href="SupplierView.jsp">Back</a><br />
 
         </c:if>
 

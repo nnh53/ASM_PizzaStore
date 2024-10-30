@@ -5,20 +5,10 @@
  */
 package Controllers.Category;
 
-import Controllers.Account.*;
 import Constant.DBMessage;
-import Constant.ErrorMessage;
-import Models.DAO.AccountDAO;
 import Models.DAO.CategoryDAO;
-import Models.DAO.UserDAO;
-import Models.DTO.Account;
-import Models.DTO.AccountError;
 import Models.DTO.Category;
-import Models.DTO.User;
-import Models.DTO.UserError;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -79,7 +69,7 @@ public class CategoryCreateController extends HttpServlet {
 
         } catch (Exception ex) { //catch ALL exception
             //3. fail
-            messageForward = ex.getMessage().toString(); //set message là cái message đã bắt đc
+            messageForward = ex.getMessage(); //set message là cái message đã bắt đc
             log(ex.getMessage());
             ex = null; //tránh crash
         } finally {

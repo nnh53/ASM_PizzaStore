@@ -6,13 +6,9 @@
 package Controllers.Account;
 
 import Models.DAO.AccountDAO;
-import Models.DAO.UserDAO;
 import Models.DTO.Account;
-import Models.DTO.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

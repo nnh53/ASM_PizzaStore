@@ -5,20 +5,11 @@
  */
 package Controllers.Category;
 
-import Controllers.Account.*;
-import Constant.DBMessage;
 import Constant.ErrorMessage;
-import Models.DAO.AccountDAO;
 import Models.DAO.CategoryDAO;
-import Models.DAO.UserDAO;
-import Models.DTO.Account;
-import Models.DTO.AccountError;
 import Models.DTO.Category;
 import Models.DTO.CategoryError;
-import Models.DTO.User;
-import Models.DTO.UserError;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
