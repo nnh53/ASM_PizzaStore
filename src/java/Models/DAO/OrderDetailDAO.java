@@ -24,15 +24,10 @@ public class OrderDetailDAO {
         //1.kiểm tra OrderID có tồn tại chưa
         OrderDAO orderDao = new OrderDAO();
         Order supTmp = orderDao.getOrderByOrderID(orderDetailToAdd.getOrderID());
-        if (supTmp != null) {
-            throw new Exception(ErrorMessage.ORDER_NOT_EXISTS.toString());
-        }
+
         //2.kiểm tra productID có tồn tại chưa
         ProductDAO proDao = new ProductDAO();
         Product proTmp = proDao.getProductByProductID(orderDetailToAdd.getProductID());
-        if (proTmp != null) {
-            throw new Exception(ErrorMessage.PRODUCT_NOT_EXISTS.toString());
-        }
 
         //2.add vô db
         Connection cn = DBConnection.getConnection();
@@ -41,7 +36,7 @@ public class OrderDetailDAO {
                 + "? ," //-- OrderID - nvarchar(30)\n"
                 + "? ," //-- ProductID - nvarchar(30)\n"
                 + "? ," //-- Quantity - int"
-                + "? ," //-- UnitPrice - nvarchar(50)\n"
+                + "?" //-- UnitPrice - nvarchar(50)\n"
                 + ");";
         af = DBConnection.getAffectedRowsFromUpdate(cn, sql, orderDetailToAdd.getOrderID(), orderDetailToAdd.getProductID(), orderDetailToAdd.getQuantity(), orderDetailToAdd.getUnitPrice()); //truyền đúng tham số theo sql ko là đi
         cn.close();
@@ -53,15 +48,10 @@ public class OrderDetailDAO {
         //1.kiểm tra OrderID có tồn tại chưa
         OrderDAO orderDao = new OrderDAO();
         Order supTmp = orderDao.getOrderByOrderID(orderDetailToUpdate.getOrderID());
-        if (supTmp != null) {
-            throw new Exception(ErrorMessage.ORDER_NOT_EXISTS.toString());
-        }
+
         //2.kiểm tra productID có tồn tại chưa
         ProductDAO proDao = new ProductDAO();
         Product proTmp = proDao.getProductByProductID(orderDetailToUpdate.getProductID());
-        if (proTmp != null) {
-            throw new Exception(ErrorMessage.PRODUCT_NOT_EXISTS.toString());
-        }
 
         //GIỮ LẠI THUỘC TÍNH GÌ CŨ THÌ LẤY LẠI TMP USER XÀI
         //2.update vô db
@@ -78,15 +68,11 @@ public class OrderDetailDAO {
         //1.kiểm tra OrderID có tồn tại chưa
         OrderDAO orderDao = new OrderDAO();
         Order supTmp = orderDao.getOrderByOrderID(orderID);
-        if (supTmp != null) {
-            throw new Exception(ErrorMessage.ORDER_NOT_EXISTS.toString());
-        }
+
         //2.kiểm tra productID có tồn tại chưa
         ProductDAO proDao = new ProductDAO();
         Product proTmp = proDao.getProductByProductID(productID);
-        if (proTmp != null) {
-            throw new Exception(ErrorMessage.PRODUCT_NOT_EXISTS.toString());
-        }
+
         //3.kiểm tra OrderDetail có tồn tại chưa
         OrderDetail tmpOrdDetail = this.getOrderDetailByOrderIDAndProductID(orderID, productID);
         if (tmpOrdDetail != null) {

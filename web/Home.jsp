@@ -26,7 +26,6 @@
         <a href="ProductCreate.jsp">ProductCreate</a>
         <a href="ProductSearch.jsp">ProductSearch</a>
 
-
         <h1>Account</h1>
         <a href="AccountCreate.jsp">AccountCreate</a>
         <a href="AccountSearch.jsp">AccountSearch</a>

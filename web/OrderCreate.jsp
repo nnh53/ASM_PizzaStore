@@ -25,6 +25,7 @@
         </c:if>
 
         <form action="OrderCreateController" method="post">
+            <input type="hidden" value="${cart}" name="cart"/>
             <c:set var="error" value="${requestScope.errorDetail}" />
 
             customerID <input type="text" name="customerID" value="" />

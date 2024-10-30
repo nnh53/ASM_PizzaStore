@@ -38,7 +38,7 @@
         <c:set var="list" value="${orderList}" />
         <c:set var="count" value="1" />
         <c:if test="${list!= null}">
-            <table border="1">
+            <table border="1" class="table table-hover">
                 <thead>
                     <tr>
                         <th>No.</th>

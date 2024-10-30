@@ -7,7 +7,11 @@ package Controllers.Order;
 
 import Constant.DBMessage;
 import Models.DAO.OrderDAO;
+import Models.DTO.OrderDetail;
+import Models.DAO.OrderDetailDAO;
 import Models.DTO.Order;
+import Models.DTO.Cart;
+import Models.DTO.CartItem;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "OrderCreateController", urlPatterns = {"/OrderCreateController"})
 public class OrderCreateController extends HttpServlet {
@@ -26,6 +31,8 @@ public class OrderCreateController extends HttpServlet {
         String messageForward = "";
         String url = "OrderCreate.jsp";
         try {
+            Cart cart = (Cart) request.getAttribute("cart");
+            request.setAttribute("cart", cart);
             //0. validate
 //            boolean isError = false;
 //            AccountError accountError = new AccountError();
@@ -60,10 +67,22 @@ public class OrderCreateController extends HttpServlet {
             OrderDAO dao = new OrderDAO();
             String id = dao.generateID();
 
-            Order toAdd = new Order(id, customerID, orderDate, shipAddress, DBMessage.ACTIVE.toString());
-            dao.addOrder(toAdd);
+            Order orderToAdd = new Order(id, customerID, orderDate, shipAddress, DBMessage.ACTIVE.toString());
+            dao.addOrder(orderToAdd);
+
+            HttpSession currentSession = request.getSession();
+            Cart cartList = (Cart) currentSession.getAttribute("cart");
+            OrderDetailDAO orderDetailDao = new OrderDetailDAO();
+
+            //2.dao xuống cho order detail
+            for (CartItem cartItem : cartList) {
+                OrderDetail orderDetailToAdd = new OrderDetail(orderToAdd.getOrderID(), cartItem.getProductID(), cartItem.getQuantity(), cartItem.getUnitPrice());
+                //dao
+                orderDetailDao.addOrderDetail(orderDetailToAdd);
+            }
+
             //2. success
-            messageForward = "Create Product successfully";
+            messageForward = "Create Order successfully";
 
         } catch (Exception ex) { //catch ALL exception
             //3. fail

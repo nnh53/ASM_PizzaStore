@@ -186,27 +186,32 @@ public class ProductDAO {
         return (list.isEmpty() == true) ? null : list;
     }
 
+    public ArrayList<Product> searchProductByProductIDORProductNameORPrice(String searchValue) throws Exception {
+        //data
+        ArrayList<Product> productListHasFound = new ArrayList<>();
+
+        //1.lấy data từ db
+        Connection cn = DBConnection.getConnection();
+        ResultSet rs = null;
+        String sql = "SELECT ProductID, ProductName, SupplierID, CategoryID, UnitPrice, ProductImageUrl, Status FROM dbo.Product WHERE ([Status] != 'disabled' AND ProductID LIKE ?) OR ([Status] != 'disabled' AND ProductName LIKE ?) OR ([Status] != 'disabled' AND UnitPrice LIKE ?)";
+        String searchNoCase = "%" + searchValue + "%";
+        rs = DBConnection.getResultSetFromQuery(cn, sql, searchValue, searchNoCase, searchValue); //truyền đúng tham số theo sql ko là đi
+
+        //2.parse/map result
+        Product productRS = null;
+        while (rs != null && rs.next()) {
+            String productID = rs.getString(1); //theo lấy 1 2 theo đúng sql
+            String productName = rs.getString(2);
+            String supplierID = rs.getString(3);
+            String categoryID = rs.getString(4);
+            String unitPrice = rs.getString(5);
+            String productImageUrl = rs.getString(6);
+            String status = rs.getString(7);
+            productRS = new Product(productID, productName, supplierID, categoryID, unitPrice, productImageUrl, status);
+            productListHasFound.add(productRS);
+        }
+        rs.close();
+        cn.close();
+        return (productListHasFound.isEmpty() == true) ? null : productListHasFound;
+    }
 }
-//    public ArrayList<Product> searchProductByProductName(String searchValue) throws Exception {
-//        //data
-//        ArrayList<Product> productListHasFound = new ArrayList<>();
-//
-//        //1.lấy data từ db
-//        Connection cn = DBConnection.getConnection();
-//        ResultSet rs = null;
-//        String sql = "SELECT ProductID,ProductName,Description,Status FROM dbo.Category WHERE ProductName=? LIKE ?";
-//        rs = DBConnection.getResultSetFromQuery(cn, sql, searchValue); //truyền đúng tham số theo sql ko là đi
-//
-//        //2.parse/map result
-//        Product productRS = null;
-//        if (rs != null && rs.next()) {
-//            String productID = rs.getString(1); //theo lấy 1 2 theo đúng sql
-//            String productName = rs.getString(2);
-//            String description = rs.getString(3);
-//            String status = rs.getString(4);
-//            productRS = new Product(productID, productName, productID, productID, status, productName, status)
-//            rs.close();
-//        }
-//        cn.close();
-//        productListHasFound.add(productRS);
-//        return (productListHasFound.isEmpty() == true) ? null : productListHasFound;

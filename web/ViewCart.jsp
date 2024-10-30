@@ -21,7 +21,7 @@
         %>
         <c:set var="cartList" value="${cartList}"/>
         <c:if test="${cartList != null}">
-            <table border="1">
+            <table border="1"  class="table table-hover">
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -34,13 +34,14 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <%
                         int count = 0;
                         for (CartItem item : cartList) {  // Bắt đầu khối for
                             totalAmount += item.getSubTotal();
                     %>
+
                 <form action="CartController" method="POST">
+                    <input type="hidden" name="txtProductID" value="<%= item.getProductID()%>"/>
                     <tr>
                         <td><%= (++count)%></td>
                         <td><%= item.getProductName()%></td>
@@ -51,13 +52,12 @@
                         </td>
                         <td><%= item.getSubTotal()%></td>
                         <!--user dc xoa hoặc them so luong-->
-                    <input type="hidden" name="txtProductID" value="<%= item.getProductID()%>">
-                    <td>
-                        <input type="submit" value="Delete" name="action"/>
-                    </td>
-                    <td>
-                        <input type="submit" value="Update" name="action"/>
-                    </td>
+                        <td>
+                            <input type="submit" value="Delete" name="action"/>
+                        </td>
+                        <td>
+                            <input type="submit" value="Update" name="action"/>
+                        </td>
                     </tr>
                 </form>
                 <%  // Đóng khối for ở đây
@@ -67,8 +67,11 @@
         </table>
 
         <b>Total Amount: <%= totalAmount%> </b>
-
     </c:if>
+
+    <form action="OrderCreate.jsp">
+        <input type="submit" value="Continue"/>
+    </form>
 
     <c:set value="${message}" var="message"/>
     <c:if test="${message != null}">

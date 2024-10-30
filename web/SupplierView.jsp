@@ -34,7 +34,7 @@
         <c:set var="userList" value="${supplierList}" />
         <c:set var="count" value="1" />
         <c:if test="${userList != null}">
-            <table border="1">
+            <table border="1" class="table table-hover">
                 <thead>
                     <tr>
                         <th>No.</th>

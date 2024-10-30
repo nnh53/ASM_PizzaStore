@@ -13,9 +13,6 @@
 
     <body>
         <jsp:include page="Header.jsp" />
-        <form method="post">
-            <input type="submit" formaction="LogoutController" value="Logout" /><br />
-        </form>
 
         <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
         <c:set var="searchValue" value="${param.txtSearchValue}" />
@@ -63,9 +60,6 @@
             <c:if test="${!accountLoggedIn.type=='Staff'}">
                 <a href="Login.jsp">Back</a><br />
             </c:if>
-
         </c:if>
-
     </body>
-
 </html>

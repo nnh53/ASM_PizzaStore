@@ -12,35 +12,36 @@
     </head>
     <body>
         <jsp:include page="Header.jsp" />
-        <h1>Create Account</h1>
-        <c:set var="message" value="${requestScope.message}" />
-        <c:if test="${message != null}">
-            ${message}
-        </c:if>
+        <div class="container">
+            <h1>Create Account</h1>
+            <c:set var="message" value="${requestScope.message}" />
+            <c:if test="${message != null}">
+                ${message}
+            </c:if>
 
-        <form action="AccountCreateController" method="post">
-            <c:set var="error" value="${requestScope.errorDetail}" />
+            <form action="AccountCreateController" method="post">
+                <c:set var="error" value="${requestScope.errorDetail}" />
 
-            AccountName <input type="text" name="txtAccountName" value="" />
-            <c:if test="${not empty error.userNameError}">
-                <text style="color: red">${error.userNameError}</text>
-            </c:if><br />
+                AccountName <input type="text" name="txtAccountName" value="" />
+                <c:if test="${not empty error.userNameError}">
+                    <text style="color: red">${error.userNameError}</text>
+                </c:if><br />
 
-            Password <input type="password" placeholder="Enter password" name="txtPassword" />
-            <c:if test="${not empty error.passwordError}">
-                <text style="color: red">${error.passwordError}</text>
-            </c:if><br />
+                Password <input type="password" placeholder="Enter password" name="txtPassword" />
+                <c:if test="${not empty error.passwordError}">
+                    <text style="color: red">${error.passwordError}</text>
+                </c:if><br />
 
-            FullName <input type="text" placeholder="Enter full name" name="txtFullName" />
-            <c:if test="${not empty error.fullNameError}">
-                <text style="color: red">${error.fullNameError}</text>
-            </c:if><br />
+                FullName <input type="text" placeholder="Enter full name" name="txtFullName" />
+                <c:if test="${not empty error.fullNameError}">
+                    <text style="color: red">${error.fullNameError}</text>
+                </c:if><br />
 
-            <input type="checkbox" name="chkIsStaff" disabled />isStaff<br />
-            <input type="submit" value="Create" name="action" /><br />
+                <input type="checkbox" name="chkIsStaff" disabled />isStaff<br />
+                <input type="submit" value="Create" name="action" /><br />
 
-            <a href="Login.jsp">Back</a><br />
-        </form>
+                <a href="Login.jsp">Back</a><br />
+            </form>
+        </div>
     </body>
-
 </html>
