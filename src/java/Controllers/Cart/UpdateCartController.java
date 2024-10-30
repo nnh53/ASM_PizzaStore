@@ -1,10 +1,15 @@
-package Controllers.Authentication;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controllers.Cart;
 
-import Constant.ErrorMessage;
-import Models.DAO.AccountDAO;
-import Models.DAO.UserDAO;
-import Models.DTO.Account;
-import Models.DTO.User;
+import Models.DAO.ProductDAO;
+import Models.DTO.OrderDetail;
+import Models.DTO.Product;
+import Models.DTO.Cart;
+import Models.DTO.CartItem;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,35 +19,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "UpdateCartController", urlPatterns = {"/UpdateCartController"})
+public class UpdateCartController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
         String messageForward = "";
-        String url = "Login.jsp";
-
+        String url = "ViewCart.jsp";
+        Cart cartList = null;
         try {
-            String userName = request.getParameter("txtAccountName");
-            String password = request.getParameter("txtPassword");
-            //1.dao
-            AccountDAO accountDAO = new AccountDAO();
-            Account account = accountDAO.login(userName, password);
-            //2.success
-            HttpSession session = request.getSession();
-            session.setAttribute("accountLoggedIn", account);
-            if (account.getType().matches("Staff")) {
-                //url = "AccountSearch.jsp";
-                url = "ProductSearch.jsp";
-                //url = "CategoryCreate.jsp";
-            } else {
-                url = "AccountDetailController" + "?action=Details&&userName=" + userName;
+            String quantity = request.getParameter("txtQuantity");
+            String productID = request.getParameter("txtProductID");
+            HttpSession currentSession = request.getSession();
+            cartList = (Cart) currentSession.getAttribute("cart");
+            if (cartList == null) {
+                cartList = new Cart();
+                currentSession.setAttribute("cart", cartList);
             }
+            cartList.updateQuantityByProductID(productID, quantity);
+            messageForward = "Update Item successfully";
         } catch (Exception ex) { //catch ALL exception
-            //3.fail
-            messageForward = ex.getMessage().toString(); //dao quăng ex có message
+            //3. fail
+            messageForward = ex.getMessage().toString(); //set message là cái message đã bắt đc
             log(ex.getMessage());
             ex = null; //tránh crash
         } finally {

@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="PRJ">
-            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/ProductSearch.jsp</file>
-            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/ProductCreate.jsp</file>
-            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/src/java/Models/DAO/ProductDAO.java</file>
-            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/ProductDetails.jsp</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/Login.jsp</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

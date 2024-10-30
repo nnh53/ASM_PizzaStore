@@ -163,7 +163,7 @@ public class AccountDAO {
         //1.lấy data từ db
         Connection cn = DBConnection.getConnection();
         ResultSet rs = null;
-        String sql = "SELECT AccountID,UserName,Password,FullName,Type,Status FROM dbo.Account WHERE [UserName]=? AND [Password]=?";
+        String sql = "SELECT AccountID,UserName,Password,FullName,Type,Status FROM dbo.Account WHERE [UserName]=? AND [Password]=? AND [Status] != 'disabled'";
         rs = DBConnection.getResultSetFromQuery(cn, sql, userNameInp, passwordInp); //truyền đúng tham số theo sql ko là đi
         //2.parse/map result
         Account accountRS = null;

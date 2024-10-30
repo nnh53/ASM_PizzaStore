@@ -20,12 +20,17 @@
     </head>
 
     <body>
+        <form method="post">
+            <input type="submit" formaction="LogoutController" value="Logout" /><br />
+        </form>
+        <!--set variable-->
         <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
-        <!--welcome-->
-        <c:if test="${userLoggedIn!=null}">
-            <c:set var="lastName" value="${accountLoggedIn.lastName}" />
+        <c:if test="${accountLoggedIn!=null}">
+            <c:set var="fullName" value="${accountLoggedIn.fullName}" />
+            <c:set var="isStaff" value="${(accountLoggedIn.type =='Staff')? true:false}" />
         </c:if>
-        <h3>Welcome <text style="color: red">${lastName}</text></h3>
+        <!--welcome-->
+        <h3>Welcome <text style="color: red">${fullName}</text></h3>
 
         <% ProductDAO dao = new ProductDAO();
             ArrayList<Product> productList = dao.getAll();
@@ -40,11 +45,13 @@
                     <tr>
                         <th>No.</th>
                         <th>productName</th>
-                        <th>supplierID</th>
-                        <th>categoryID</th>
                         <th>unitPrice</th>
                         <th>productImageUrl</th>
-                        <th>status</th>
+                            <c:if test="${isStaff}">
+                            <th>supplierID</th>
+                            <th>categoryID</th>
+                            <th>status</th>
+                            </c:if>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
@@ -53,19 +60,29 @@
                         <tr>
                             <td>${count}</td>
                             <td>${supp.productName}</td>
-                            <td>${supp.supplierID}</td>
-                            <td>${supp.categoryID}</td>
                             <td>${supp.unitPrice}</td>
                             <td>${supp.productImageUrl}</td>
-                            <td>${supp.status}</td>
-                            <td>
-                                <a
-                                    href="ProductDeleteController?action=Delete&txtProductName=${supp.productName}">Delete</a>
-                            </td>
-                            <td>
-                                <a
-                                    href="ProductDetailController?action=Details&txtProductName=${supp.productName}">View</a>
-                            </td>
+                            <c:if test="${isStaff}">
+                                <td>${supp.supplierID}</td>
+                                <td>${supp.categoryID}</td>
+                                <td>${supp.status}</td>
+                            </c:if>
+                            <!--set quyen staff user-->
+                            <c:if test="${isStaff}">
+                                <td>
+                                    <a
+                                        href="ProductDeleteController?action=Delete&txtProductName=${supp.productName}">Delete</a>
+                                </td>
+                                <td>
+                                    <a
+                                        href="ProductDetailController?action=Details&txtProductName=${supp.productName}">View</a>
+                                </td>
+                            </c:if>
+                            <c:if test="${!isStaff}">
+                                <td>
+                                    <a href="AddToCartController?action=Add&txtProductName=${supp.productName}">ADD TO CART</a>
+                                </td>
+                            </c:if>
                         </tr>
                         <c:set var="count" value="${count+1}" />
                     </c:forEach>
@@ -77,7 +94,9 @@
             <p style="color: green">${message}</p>
         </c:if>
 
-        <h3>Number of Category: ${(productList != null)?productList.size():0}</h3>
+        <h3>Number of Product: ${(productList != null)?productList.size():0}</h3>
+
+        <a href="ViewCart.jsp">View Cart</a>
     </body>
 
 </html>

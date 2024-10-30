@@ -1,48 +1,55 @@
-package Controllers.Authentication;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controllers.Order;
 
-import Constant.ErrorMessage;
+import Controllers.Product.*;
+import Controllers.Supplier.*;
+import Controllers.Category.*;
+import Controllers.Account.*;
 import Models.DAO.AccountDAO;
+import Models.DAO.CategoryDAO;
+import Models.DAO.OrderDAO;
+import Models.DAO.ProductDAO;
+import Models.DAO.SupplierDAO;
 import Models.DAO.UserDAO;
 import Models.DTO.Account;
+import Models.DTO.Category;
+import Models.DTO.Order;
+import Models.DTO.Product;
+import Models.DTO.Supplier;
 import Models.DTO.User;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "OrderDetailController", urlPatterns = {"/OrderDetailController"})
+public class OrderDetailController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        String url = "OrderDetails.jsp";
         String messageForward = "";
-        String url = "Login.jsp";
-
         try {
-            String userName = request.getParameter("txtAccountName");
-            String password = request.getParameter("txtPassword");
-            //1.dao
-            AccountDAO accountDAO = new AccountDAO();
-            Account account = accountDAO.login(userName, password);
+            String orderID = request.getParameter("txtOrderID");
+            //1. DAO
+            OrderDAO dao = new OrderDAO();
+
+            Order orderDetails = dao.getOrderByOrderID(orderID);
             //2.success
-            HttpSession session = request.getSession();
-            session.setAttribute("accountLoggedIn", account);
-            if (account.getType().matches("Staff")) {
-                //url = "AccountSearch.jsp";
-                url = "ProductSearch.jsp";
-                //url = "CategoryCreate.jsp";
-            } else {
-                url = "AccountDetailController" + "?action=Details&&userName=" + userName;
-            }
+            request.setAttribute("orderDetails", orderDetails);
         } catch (Exception ex) { //catch ALL exception
             //3.fail
-            messageForward = ex.getMessage().toString(); //dao quăng ex có message
+            messageForward = ex.getMessage().toString(); //set message là cái message đã bắt đc
             log(ex.getMessage());
             ex = null; //tránh crash
         } finally {
@@ -64,3 +71,4 @@ public class LoginController extends HttpServlet {
         processRequest(request, response);
     }
 }
+//    url  = RouteController.ACCOUNT_CONTROLLER.toString() + "?action=Search";
