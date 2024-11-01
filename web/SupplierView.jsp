@@ -19,12 +19,12 @@
     <body>
         <jsp:include page="Header.jsp" />
         <div class="container">
+            <!--set variable-->
             <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
-            <!--welcome-->
             <c:if test="${accountLoggedIn!=null}">
-                <c:set var="lastName" value="${accountLoggedIn.fullName}" />
+                <c:set var="fullName" value="${accountLoggedIn.fullName}" />
+                <c:set var="isStaff" value="${(accountLoggedIn.type =='Staff')? true:false}" />
             </c:if>
-            <h3>Welcome <text style="color: red">${lastName}</text></h3>
 
             <%
                 SupplierDAO dao = new SupplierDAO();
@@ -39,6 +39,9 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                                <c:if test="${isStaff}">
+                                <th>supplierID</th>
+                                </c:if>
                             <th>companyName</th>
                             <th>address</th>
                             <th>phone</th>
@@ -49,6 +52,9 @@
                         <c:forEach var="supp" items="${supplierList}">
                             <tr>
                                 <td>${count}</td>
+                                <c:if test="${isStaff}">
+                                    <td>${supp.supplierID}</td>
+                                </c:if>
                                 <td>${supp.companyName}</td>
                                 <td>${supp.address}</td>
                                 <td>${supp.phone}</td>

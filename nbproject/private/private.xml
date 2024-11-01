@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="PRJ">
-            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/src/java/Models/DAO/OrderDAO.java</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/src/java/Controllers/Cart/CartController.java</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/OrderView.jsp</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/AccountSearch.jsp</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/src/java/Controllers/Cart/AddToCartController.java</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/ViewCart.jsp</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/ProductView.jsp</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/src/java/Models/DAO/AccountDAO.java</file>
+            <file>file:/D:/Lab%20PRJ%20-%20KiemHH/ASM_PizzaStore/web/CategoryDetails.jsp</file>
         </group>
     </open-files>
 </project-private>

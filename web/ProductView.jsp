@@ -43,6 +43,9 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                                <c:if test="${isStaff}">
+                                <th>productID</th>
+                                </c:if>
                             <th>productName</th>
                             <th>unitPrice</th>
                             <th>productImageUrl</th>
@@ -58,6 +61,9 @@
                         <c:forEach var="supp" items="${productList}">
                             <tr>
                                 <td>${count}</td>
+                                <c:if test="${isStaff}">
+                                    <td>${supp.productID}</td>
+                                </c:if>
                                 <td>${supp.productName}</td>
                                 <td>${supp.unitPrice}</td>
                                 <td>${supp.productImageUrl}</td>

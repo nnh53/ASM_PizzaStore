@@ -17,9 +17,14 @@
     <body>
         <jsp:include page="Header.jsp" />
         <div class="container">
+
+            <!--set variable-->
             <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
-            <c:set var="searchValue" value="${param.txtSearchValue}" />
-            
+            <c:if test="${accountLoggedIn!=null}">
+                <c:set var="fullName" value="${accountLoggedIn.fullName}" />
+                <c:set var="isStaff" value="${(accountLoggedIn.type =='Staff')? true:false}" />
+            </c:if>
+
             <%
                 CategoryDAO categoryDAO = new CategoryDAO();
                 ArrayList<Category> cateList = categoryDAO.getAll();
@@ -31,28 +36,34 @@
             <c:if test="${userList != null}">
                 <table border="1" class="table table-hover">
                     <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>categoryName</th>
-                        <th>description</th>
-                        <th colspan="2">Action</th>
-                    </tr>
+                        <tr>
+                            <th>No.</th>
+                                <c:if test="${isStaff}">
+                                <th>categoryID</th>
+                                </c:if>
+                            <th>categoryName</th>
+                            <th>description</th>
+                            <th colspan="2">Action</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="cate" items="${cateList}">
-                        <tr>
-                            <td>${count}</td>
-                            <td>${cate.categoryName}</td>
-                            <td>${cate.description}</td>
-                            <td>
-                                <a href="CategoryDeleteController?action=Delete&txtCategoryName=${cate.categoryName}">Delete</a>
-                            </td>
-                            <td>
-                                <a href="CategoryDetailController?action=Details&txtCategoryName=${cate.categoryName}">View</a>
-                            </td>
-                        </tr>
-                        <c:set var="count" value="${count+1}" />
-                    </c:forEach>
+                        <c:forEach var="cate" items="${cateList}">
+                            <tr>
+                                <td>${count}</td>
+                                <c:if test="${isStaff}">
+                                    <td>${cate.categoryID}</td>
+                                </c:if>
+                                <td>${cate.categoryName}</td>
+                                <td>${cate.description}</td>
+                                <td>
+                                    <a href="CategoryDeleteController?action=Delete&txtCategoryName=${cate.categoryName}">Delete</a>
+                                </td>
+                                <td>
+                                    <a href="CategoryDetailController?action=Details&txtCategoryName=${cate.categoryName}">View</a>
+                                </td>
+                            </tr>
+                            <c:set var="count" value="${count+1}" />
+                        </c:forEach>
                     </tbody>
                 </table>
             </c:if>

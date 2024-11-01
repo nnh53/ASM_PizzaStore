@@ -47,13 +47,15 @@
                                 <a class="dropdown-item" href="CategoryView.jsp">View Category</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Order</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="OrderCreate.jsp">Create Order</a>
-                                <a class="dropdown-item" href="OrderView.jsp">View Order</a>
-                            </div>
-                        </li>
+                    </c:if>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Order</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="OrderCreate.jsp">Create Order</a>
+                            <a class="dropdown-item" href="OrderView.jsp">View Order</a>
+                        </div>
+                    </li>
+                    <c:if test="${isStaff}">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
                             <div class="dropdown-menu">

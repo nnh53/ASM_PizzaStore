@@ -27,7 +27,7 @@
             <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
             <c:if test="${accountLoggedIn!=null}">
                 <c:set var="fullName" value="${accountLoggedIn.fullName}" />
-                <c:set var="isStaff" value="${(accountLoggedIn.type =='Staff')? true:false}" />
+                <c:set var="isStaff" value="${(accountLoggedIn.type =='Staff') ? true:false}" />
             </c:if>
 
             <!--search-->

@@ -78,7 +78,7 @@
             <c:if test="${message != null}">
                 <p style="color: green">${message}</p>
             </c:if>
-            <a href="ProductSearch.jsp">Add to cart </a>
+            <a href="ProductView.jsp">Add to cart </a>
         </div>
     </body>
 </html>

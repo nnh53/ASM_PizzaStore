@@ -8,6 +8,7 @@ package Models.DAO;
 import Constant.DBMessage;
 import Constant.ErrorMessage;
 import Models.DTO.Account;
+import Models.DTO.Supplier;
 import Ultil.DaoUltil;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -209,6 +210,32 @@ public class AccountDAO {
         rs.close();
         cn.close();
         return (accountListHasFound.isEmpty() == true) ? null : accountListHasFound;
+    }
+
+    public ArrayList<Account> getAll() throws Exception {
+        //data
+        ArrayList<Account> list = new ArrayList<>();
+
+        //1.lấy data từ db
+        Connection cn = DBConnection.getConnection();
+        ResultSet rs = null;
+        String sql = "SELECT AccountID,UserName,Password,FullName,Type,Status FROM dbo.Account WHERE [Status] != 'disabled'";
+        rs = DBConnection.getResultSetFromQuery(cn, sql); //truyền đúng tham số theo sql ko là đi
+        //2.parse/map result
+        Account accountRS = null;
+        while (rs != null && rs.next()) {
+            String accountID = rs.getString(1); //theo lấy 1 2 theo đúng sql
+            String userName = rs.getString(2);
+            String password = rs.getString(3);
+            String fullName = rs.getString(4);
+            String type = rs.getString(5);
+            String status = rs.getString(6);
+            accountRS = new Account(accountID, userName, password, fullName, type, status);
+            list.add(accountRS);
+        }
+        rs.close();
+        cn.close();
+        return (list.isEmpty() == true) ? null : list;
     }
 
 }

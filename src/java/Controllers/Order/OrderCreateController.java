@@ -63,6 +63,15 @@ public class OrderCreateController extends HttpServlet {
 //                url = "AccountCreate.jsp";//quay lại
 //                throw new Exception(ErrorMessage.INPUT_INVALID.toString());
 //            }
+
+            HttpSession currentSession = request.getSession();
+            Cart cartList = (Cart) currentSession.getAttribute("cart");
+            if (cartList == null || cartList.size() == 0) {
+
+                url = "ViewCart.jsp";
+                throw new Exception("Cart is empty cannot create Order");
+            }
+
             //1. DAO
             OrderDAO dao = new OrderDAO();
             String id = dao.generateID();
@@ -70,8 +79,6 @@ public class OrderCreateController extends HttpServlet {
             Order orderToAdd = new Order(id, customerID, orderDate, shipAddress, DBMessage.ACTIVE.toString());
             dao.addOrder(orderToAdd);
 
-            HttpSession currentSession = request.getSession();
-            Cart cartList = (Cart) currentSession.getAttribute("cart");
             OrderDetailDAO orderDetailDao = new OrderDetailDAO();
 
             //2.dao xuống cho order detail
@@ -86,7 +93,7 @@ public class OrderCreateController extends HttpServlet {
 
         } catch (Exception ex) { //catch ALL exception
             //3. fail
-            messageForward = ex.getMessage().toString(); //set message là cái message đã bắt đc
+            messageForward = ex.getMessage(); //set message là cái message đã bắt đc
             log(ex.getMessage());
             ex = null; //tránh crash
         } finally {

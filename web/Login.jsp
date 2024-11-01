@@ -19,10 +19,14 @@
             </c:if>
 
             <form action="LoginController" method="post">
-                AccountName <input type="text" name="txtAccountName" /><br />
-                Password <input type="password" name="txtPassword" /><br />
-                <input type="submit" value="Login" name="action" />
-                <input type="reset" value="Reset" /><br />
+                <div class="pb-3">
+                    AccountName <input type="text" name="txtAccountName" /><br />
+                </div>
+                <div class="pb-3">
+                    Password <input type="password" name="txtPassword" /><br />
+                </div>
+                <input type="submit" value="Login" name="action" class="btn btn-primary"/>
+                <input type="reset" value="Reset" class="btn btn-primary" /><br />
                 <a href="AccountCreate.jsp">Click here to Sign up</a><br />
             </form>
         </div>

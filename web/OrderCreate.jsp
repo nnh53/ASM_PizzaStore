@@ -1,5 +1,8 @@
 <%-- Document : CreateUser Created on : Oct 18, 2024, 8:36:10 AM Author : hoangnn --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Models.DTO.Account"%>
+<%@page import="Models.DAO.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -19,7 +22,21 @@
     <body>
         <jsp:include page="Header.jsp" />
         <div class="container">
-            <h1>Create Product</h1>
+
+            <!--set variable-->
+            <c:set var="accountLoggedIn" value="${accountLoggedIn}" />
+            <c:if test="${accountLoggedIn!=null}">
+                <c:set var="fullName" value="${accountLoggedIn.fullName}" />
+                <c:set var="isStaff" value="${(accountLoggedIn.type =='Staff')? true:false}" />
+            </c:if>
+
+            <%
+                AccountDAO dao = new AccountDAO();
+                ArrayList<Account> accountList = dao.getAll();
+                request.setAttribute("accountList", accountList);
+            %>
+
+            <h1>Create Order</h1>
             <c:set var="message" value="${requestScope.message}" />
             <c:if test="${message != null}">
                 ${message}
@@ -29,20 +46,31 @@
                 <input type="hidden" value="${cart}" name="cart"/>
                 <c:set var="error" value="${requestScope.errorDetail}" />
 
-                customerID <input type="text" name="customerID" value="" />
-                <c:if test="${not empty error.productNameError}">
-                    <text style="color: red">${error.productNameError}</text>
-                </c:if><br />
+                <c:if test="${isStaff}">
+                    customerID
+                    <select class="form-select" name="customerID" >
+                        <c:forEach var="acc" items="${accountList}">
+                            <option>${acc.accountID}</option>
+                        </c:forEach>
+                    </select>
+                </c:if>
+                <c:if test="${!isStaff}">
+                    customerID
+                    <select class="form-select" name="customerID"  >
+                        <option>${accountLoggedIn.accountID}</option>
+                    </select>
+                </c:if>
+
 
                 <div class="row form-group">
                     <div class="col-sm-4">
                         <div class="input-group date" id="datepicker">
                             orderDate<input  name="orderDate" type="text" class="form-control" readonly>
                             <span class="input-group-append">
-                            <span class="input-group-text bg-white d-block">
-                                <i class="fa fa-calendar"></i>
+                                <span class="input-group-text bg-white d-block">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
                             </span>
-                        </span>
                         </div>
                     </div>
                 </div>
